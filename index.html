@@ -1,84 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-      <!-- Last commit time display -->
-<div id="last-updated">Loading last update time...</div>
-<!-- Verify Button -->
-<button onclick="verifyLastUpdatedTime()" style="display: block; margin: 10px auto; padding: 8px 16px;">
-    Verify Last Modified Time
-</button>
-<script>
-    async function getLastUpdatedTime() {
-        const username = 'FEPSFY6966093';
-        const repo = 'FY6966093';
-       
-        const url = `https://api.github.com/repos/${username}/${repo}/commits`;
-        try {
-            const response = await fetch(url, {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/vnd.github.v3+json',
-                }
-            });
-            if (!response.ok) {
-                throw new Error(`Error fetching data: ${response.status} - ${response.statusText}`);
-            }
-            const commits = await response.json();
-            if (commits && commits.length > 0) {
-                const lastCommitDate = new Date(commits[0].commit.committer.date);
-               
-                // Displaying the time on load
-                document.getElementById('last-updated').innerText = `Last Modified Time: ${lastCommitDate.toLocaleString()}`;
-            } else {
-                document.getElementById('last-updated').innerText = 'No commits found in the repository.';
-            }
-        } catch (error) {
-            console.error('Error fetching the last updated time:', error);
-            document.getElementById('last-updated').innerText = 'Error fetching update time. Please check the repository details.';
-        }
-    }
-    // Function to verify the last update time by re-fetching it from the API
-    async function verifyLastUpdatedTime() {
-        document.getElementById('last-updated').innerText = 'Verifying...';
-        await getLastUpdatedTime();
-        alert("Last modified time has been successfully verified from GitHub API.");
-    }
-    // Initial load to display the time on page load
-    window.onload = getLastUpdatedTime;
-</script>
-
-
- <!-- //////////////////////////////////////////////////////////////////////////////// -->
-  <!-- ////////////////////////////// Word count function ////////////////////////////// -->
-  <!-- //////////////////////////////////////////////////////////////////////////////// -->
-<!-- Placeholder for total word count -->
-<p id="totalWordCount"></p>
-<hr>
-<script>
-  // Function to calculate and display word count for a specified section
-  function displayWordCount(sectionId, outputId) {
-    // Get the text content from the specified section
-    const text = document.getElementById(sectionId).textContent;
-    // Split text into words based on spaces and filter out any empty strings
-    const wordArray = text.trim().split(/\s+/);
-    // Count the words
-    const wordCount = wordArray.length;
-    // Return the word count for summing purposes
-    return wordCount;
-  }
-  // Function to calculate and display total word count from selected sections
-  function displayTotalWordCount() {
-    // Calculate word count for each section and accumulate the total
-    const IntroductionCount = displayWordCount("Introduction_InText");
-    const AnalysisCount = displayWordCount("Analysis_InText");
-    // Calculate the sum of all selected sections
-    const totalWordCount = IntroductionCount + AnalysisCount;
-    // Display the total word count
-    document.getElementById("totalWordCount").innerText = `Total word count: ${totalWordCount}`;
-  }
-  // Run the function for specific sections and display total count when the page loads
-  window.onload = displayTotalWordCount;
 <head>
-  
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ENG0018 Computer Laboratory 2026/27</title>
@@ -110,44 +32,106 @@
     .mySlides {
       display: none;
     }
-  
   </style>
 </head>
-<body>
-  <body style="background-color:#000000;margin-left:50px;">
+<body style="background-color:#000000;margin-left:50px;">
+
+  <!-- Last commit time display -->
+  <div id="last-updated">Loading last update time...</div>
+  <!-- Verify Button -->
+  <button onclick="verifyLastUpdatedTime()" style="display: block; margin: 10px auto; padding: 8px 16px;">
+    Verify Last Modified Time
+  </button>
+  <script>
+    async function getLastUpdatedTime() {
+        const username = 'FEPSFY6966093';
+        const repo = 'FY6966093';
+
+        const url = `https://api.github.com/repos/${username}/${repo}/commits`;
+        try {
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/vnd.github.v3+json',
+                }
+            });
+            if (!response.ok) {
+                throw new Error(`Error fetching data: ${response.status} - ${response.statusText}`);
+            }
+            const commits = await response.json();
+            if (commits && commits.length > 0) {
+                const lastCommitDate = new Date(commits[0].commit.committer.date);
+
+                // Displaying the time on load
+                document.getElementById('last-updated').innerText = `Last Modified Time: ${lastCommitDate.toLocaleString()}`;
+            } else {
+                document.getElementById('last-updated').innerText = 'No commits found in the repository.';
+            }
+        } catch (error) {
+            console.error('Error fetching the last updated time:', error);
+            document.getElementById('last-updated').innerText = 'Error fetching update time. Please check the repository details.';
+        }
+    }
+    // Function to verify the last update time by re-fetching it from the API
+    async function verifyLastUpdatedTime() {
+        document.getElementById('last-updated').innerText = 'Verifying...';
+        await getLastUpdatedTime();
+        alert("Last modified time has been successfully verified from GitHub API.");
+    }
+  </script>
+
+  <!-- //////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////// Word count function ////////////////////////////// -->
+  <!-- //////////////////////////////////////////////////////////////////////////////// -->
+  <!-- Placeholder for total word count -->
+  <p id="totalWordCount"></p>
+  <hr>
+  <script>
+    // Function to calculate word count for a specified section
+    function displayWordCount(sectionId) {
+      const section = document.getElementById(sectionId);
+      if (!section) return 0;
+      const text = section.textContent.trim();
+      return text === '' ? 0 : text.split(/\s+/).length;
+    }
+    // Function to calculate and display total word count from selected sections
+    function displayTotalWordCount() {
+      const IntroductionCount = displayWordCount("Introduction_InText");
+      const AnalysisCount = displayWordCount("Analysis_InText");
+      const totalWordCount = IntroductionCount + AnalysisCount;
+      document.getElementById("totalWordCount").innerText = `Total word count: ${totalWordCount}`;
+    }
+    // Run both functions when the page loads
+    window.addEventListener('load', getLastUpdatedTime);
+    window.addEventListener('load', displayTotalWordCount);
+  </script>
+
   <img src="WebBanner2026.png" alt="ENG0018 Computer Laboratory 2026/27 banner" width="700" height="150" style="max-width:100%; height:auto;">
   <h1 style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">ENG0018 Computer Laboratory 2026/27</h1>
   <h2>Student URN: 123456</h2>
   <h2 style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">Conference Paper: Exploring the correlation between technological development and conflict</h2>
   <hr>
-</body>
   <h3 id="Abstract">Abstract</h3>
-<body>
-  <body style="background-color:#000000;margin-left:50px;">
-</body>
-  
-<table>
 
-<tr>
-  <th><h3>Table of contents</h3></th>
-</tr>
-<tr>
-  <td><a href="#Abstract">Abstract</td>
-</tr>
-<tr>
-  <td><a href="#Introduction">Introduction</td>
-</tr>
-<tr>
-  <td><a href="#Analysis and discussion"> Analysis and discussion</td>
-</tr>
-
-<tr>
-  <td><a href="#references">References</td>
-</tr>
-</table>
-<p class="ex1">
-  <pre>
+  <table>
+    <tr>
+      <th><h3>Table of contents</h3></th>
+    </tr>
+    <tr>
+      <td><a href="#Abstract">Abstract</a></td>
+    </tr>
+    <tr>
+      <td><a href="#Introduction">Introduction</a></td>
+    </tr>
+    <tr>
+      <td><a href="#Analysis and discussion">Analysis and discussion</a></td>
+    </tr>
+    <tr>
+      <td><a href="#references">References</a></td>
+    </tr>
+  </table>
+  <pre class="ex1">
     This is a testing paragraph for my github website I am unsure as to what this will appear as. This is due to my low proficiency in Html and I will endevour to Improve over this first semester
   </pre>
-</p>
+</body>
 </html>
