@@ -4,44 +4,217 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ENG0018 Computer Laboratory 2026/27</title>
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <style>
-    h1, h2 {
-      color: white;
+    :root {
+      --bg: #0d0f14;
+      --surface: #161a22;
+      --border: #262c38;
+      --text: #e6e9ef;
+      --muted: #9aa3b2;
+      --accent: #5b9dff;
     }
-    /* style for tables */
-    table {
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      border-collapse: collapse;
-      width: 30%;
+      line-height: 1.65;
     }
-    td, th {
-      border: 1px solid #dddddd;
+
+    .page {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 32px 20px 56px;
+    }
+
+    /* Header */
+    .banner {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      line-height: 1.2;
+      margin: 0 0 8px;
+      letter-spacing: -0.01em;
+    }
+
+    h2 {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--muted);
+      margin: 0 0 6px;
+    }
+
+    h2.paper-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-top: 14px;
+    }
+
+    #totalWordCount {
+      display: inline-block;
+      margin: 18px 0 0;
+      padding: 4px 12px;
+      font-size: 0.85rem;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid var(--border);
+      margin: 28px 0;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      margin: 0 0 12px;
+    }
+
+    /* Contents table */
+    table {
+      width: 100%;
+      max-width: 340px;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 24px 0;
+    }
+
+    th, td {
       text-align: left;
-      padding: 8px;
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--border);
     }
-    tr:nth-child(even) {
-      background-color: #ffffff;
+
+    tr:last-child td { border-bottom: 0; }
+
+    th h3 {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
     }
-    tr:nth-child(odd) {
-      background-color: #ebebeb;
+
+    td a {
+      display: block;
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.15s, padding-left 0.15s;
     }
+
+    td a:hover {
+      color: var(--accent);
+      padding-left: 4px;
+    }
+
+    /* Body text */
     p.ex1 {
-      margin-left: 250px;
+      margin: 0;
+      padding: 18px 22px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
     }
-    .mySlides {
-      display: none;
+
+    /* Footer with last-updated + verify button */
+    footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    #last-updated {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    button {
+      margin-top: 14px;
+      padding: 10px 22px;
+      font: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #fff;
+      background: var(--accent);
+      border: 0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: filter 0.15s, transform 0.1s;
+    }
+
+    button:hover { filter: brightness(1.12); }
+    button:active { transform: translateY(1px); }
+    button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+    @media (max-width: 520px) {
+      h1 { font-size: 1.5rem; }
+      table { max-width: 100%; }
     }
   </style>
 </head>
-<body style="background-color:#000000;margin-left:50px;">
+<body>
+  <div class="page">
 
-  <!-- Last commit time display -->
-  <div id="last-updated">Loading last update time...</div>
-  <!-- Verify Button -->
-  <button onclick="verifyLastUpdatedTime()" style="display: block; margin: 10px auto; padding: 8px 16px;">
-    Verify Last Modified Time
-  </button>
+    <img class="banner" src="WebBanner2026.png" alt="ENG0018 Computer Laboratory 2026/27 banner" width="700" height="150">
+    <h1>ENG0018 Computer Laboratory 2026/27</h1>
+    <h2>Student URN: 123456</h2>
+    <h2 class="paper-title">Conference Paper: Exploring the correlation between technological development and conflict</h2>
+
+    <!-- Placeholder for total word count -->
+    <p id="totalWordCount"></p>
+    <hr>
+
+    <h3 id="Abstract">Abstract</h3>
+
+    <table>
+      <tr>
+        <th><h3>Table of contents</h3></th>
+      </tr>
+      <tr>
+        <td><a href="#Abstract">Abstract</a></td>
+      </tr>
+      <tr>
+        <td><a href="#Introduction">Introduction</a></td>
+      </tr>
+      <tr>
+        <td><a href="#Analysis and discussion">Analysis and discussion</a></td>
+      </tr>
+      <tr>
+        <td><a href="#references">References</a></td>
+      </tr>
+    </table>
+
+    <p class="ex1">
+      This is a testing paragraph for my github website I am unsure as to what this will appear as. This is due to my low proficiency in Html and I will endevour to Improve over this first semester
+    </p>
+
+    <footer>
+      <!-- Last commit time display -->
+      <div id="last-updated">Loading last update time...</div>
+      <!-- Verify Button -->
+      <button onclick="verifyLastUpdatedTime()">Verify Last Modified Time</button>
+    </footer>
+
+  </div>
+
   <script>
     async function getLastUpdatedTime() {
         const username = 'FEPSFY6966093';
@@ -78,15 +251,8 @@
         await getLastUpdatedTime();
         alert("Last modified time has been successfully verified from GitHub API.");
     }
-  </script>
 
-  <!-- //////////////////////////////////////////////////////////////////////////////// -->
-  <!-- ////////////////////////////// Word count function ////////////////////////////// -->
-  <!-- //////////////////////////////////////////////////////////////////////////////// -->
-  <!-- Placeholder for total word count -->
-  <p id="totalWordCount"></p>
-  <hr>
-  <script>
+    // ---------- Word count ----------
     // Function to calculate word count for a specified section
     function displayWordCount(sectionId) {
       const section = document.getElementById(sectionId);
@@ -105,33 +271,5 @@
     window.addEventListener('load', getLastUpdatedTime);
     window.addEventListener('load', displayTotalWordCount);
   </script>
-
-  <img src="WebBanner2026.png" alt="ENG0018 Computer Laboratory 2026/27 banner" width="700" height="150" style="max-width:100%; height:auto;">
-  <h1 style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">ENG0018 Computer Laboratory 2026/27</h1>
-  <h2>Student URN: 123456</h2>
-  <h2 style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;">Conference Paper: Exploring the correlation between technological development and conflict</h2>
-  <hr>
-  <h3 id="Abstract">Abstract</h3>
-
-  <table>
-    <tr>
-      <th><h3>Table of contents</h3></th>
-    </tr>
-    <tr>
-      <td><a href="#Abstract">Abstract</a></td>
-    </tr>
-    <tr>
-      <td><a href="#Introduction">Introduction</a></td>
-    </tr>
-    <tr>
-      <td><a href="#Analysis and discussion">Analysis and discussion</a></td>
-    </tr>
-    <tr>
-      <td><a href="#references">References</a></td>
-    </tr>
-  </table>
-  <pre class="ex1">
-    This is a testing paragraph for my github website I am unsure as to what this will appear as. This is due to my low proficiency in Html and I will endevour to Improve over this first semester
-  </pre>
 </body>
 </html>
