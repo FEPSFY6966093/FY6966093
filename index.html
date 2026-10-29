@@ -268,8 +268,8 @@
     }
     // Function to calculate and display total word count from selected sections
     function displayTotalWordCount() {
-      const IntroductionCount = displayWordCount("Introduction_InText");
-      const AnalysisCount = displayWordCount("Analysis_InText");
+      const IntroductionCount = displayWordCount("Introduction");
+      const AnalysisCount = displayWordCount("Analysis");
       const totalWordCount = IntroductionCount + AnalysisCount;
       document.getElementById("totalWordCount").innerText = `Total word count: ${totalWordCount}`;
     }
