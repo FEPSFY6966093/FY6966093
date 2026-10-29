@@ -202,12 +202,12 @@
       </tr>
     </table>
     <h3 id="Abstract">Abstract</h3>
-<p class="ex1">
+<p class="ex1" id="Abstract_InText">
       This is a testing paragraph for my conference project regarding the correlation between war and technology and the impacts they have on daily life
     </p>
     <hr>
     <h3 id ="Introduction">Introduction</h3>
-<p class="ex1">
+<p class="ex1" id="Introduction_InText">
     this is where my introduction paragraph will be
     </p>
     
@@ -268,8 +268,8 @@
     }
     // Function to calculate and display total word count from selected sections
     function displayTotalWordCount() {
-      const IntroductionCount = displayWordCount("Introduction");
-      const AnalysisCount = displayWordCount("Analysis");
+      const IntroductionCount = displayWordCount("Introduction_InText");
+      const AnalysisCount = displayWordCount("Analysis_InText");
       const totalWordCount = IntroductionCount + AnalysisCount;
       document.getElementById("totalWordCount").innerText = `Total word count: ${totalWordCount}`;
     }
